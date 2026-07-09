@@ -32,6 +32,16 @@
     ];
   };
 
+  # 启用 ttyd 服务
+  services.ttyd = {
+    enable = true;
+    port = 7681;         # 默认监听端口，可根据需要修改
+    interface = "0.0.0.0"; # 监听所有网络接口，或指定特定 IP
+    writeable = true;      # 允许客户端写入终端（如果需要交互操作）
+    entrypoint = [ "${pkgs.fish}/bin/fish" ];
+    # 更多高级选项如 SSL、基本认证等可参考 nixpkgs 的 ttyd 模块
+  };
+
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
 
@@ -111,12 +121,12 @@
     enableAutoLoginOut = true;
   };
   # 挂载 iSCSI 磁盘
-  fileSystems."/mnt/iscsi-windows" = {
+  #fileSystems."/mnt/iscsi-windows" = {
     # 替换为通过 iscsiadm 发现的实际路径
-    device = "/dev/disk/by-path/ip-192.168.13.8:3260-iscsi-iqn.2026-05.com.ns4ai:storage.win-lun-1-part2";
-    fsType = "ntfs3";
-    options = [ "nofail" "_netdev" ]; # 使用 _netdev 确保网络启动后再挂载
-  };
+    # device = "/dev/disk/by-path/ip-192.168.13.8:3260-iscsi-iqn.2026-05.com.ns4ai:storage.win-lun-1-part2";
+    # fsType = "ntfs3";
+    # options = [ "nofail" "_netdev" ]; # 使用 _netdev 确保网络启动后再挂载
+  #};
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."sa" = {
     isNormalUser = true;
