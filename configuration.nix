@@ -156,8 +156,8 @@
     gnome-tweaks
     microsoft-edge
     fastfetch
-    vlc
-    git
+    vlc 
+    git virt-viewer
     gnomeExtensions.desktop-icons-ng-ding
   ];
   # 允许安装未开源/未自由分发的软件
