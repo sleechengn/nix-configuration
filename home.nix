@@ -6,7 +6,8 @@
   home.homeDirectory = "/home/sa";
   home.packages = with pkgs; [ gnomeExtensions.dash-to-dock ];
   dconf.settings = {
-    "org/gnome/shell".enabled-extensions = [ "dash-to-dock" ];
+    "org/gnome/shell".enabled-extensions = [ "dash-to-dock@micxgx.gmail.com" "ding@rastersoft.com" ];
+    "org/gnome/shell".disable-user-extensions = false;
     "org/gnome/shell/extensions/dash-to-dock" = {
       dock-position = "BOTTOM";
       extend-height = false;
