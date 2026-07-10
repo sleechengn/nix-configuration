@@ -121,12 +121,12 @@
     enableAutoLoginOut = true;
   };
   # 挂载 iSCSI 磁盘
-  #fileSystems."/mnt/iscsi-windows" = {
+  fileSystems."/mnt/iscsi-windows" = {
     # 替换为通过 iscsiadm 发现的实际路径
-    # device = "/dev/disk/by-path/ip-192.168.13.8:3260-iscsi-iqn.2026-05.com.ns4ai:storage.win-lun-1-part2";
-    # fsType = "ntfs3";
-    # options = [ "nofail" "_netdev" ]; # 使用 _netdev 确保网络启动后再挂载
-  #};
+    device = "/dev/disk/by-path/ip-192.168.13.8:3260-iscsi-iqn.2026-05.com.ns4ai:storage.win-lun-1-part2";
+    fsType = "ntfs";
+    options = [ "nofail" "_netdev" ]; # 使用 _netdev 确保网络启动后再挂载
+  };
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."sa" = {
     isNormalUser = true;
@@ -137,6 +137,8 @@
     ];
   };
 
+  # 允许 wheel 组的用户使用 sudo 免密
+  security.sudo.wheelNeedsPassword = false;
   # Install firefox.
   programs.firefox.enable = true;
   programs.fish.enable = true;
